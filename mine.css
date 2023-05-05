@@ -1,0 +1,61 @@
+*{
+    box-sizing: border-box;
+}
+.heading{
+    text-align: center;
+    background-color: blueviolet;
+    padding: 30px;
+    font-weight: 700;
+    font-size: 36px;
+    color: white; 
+}
+h1{
+    color:white;
+}
+ul{
+    list-style: none;
+}
+.cat{
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+
+}
+
+.view_product{
+    cursor: pointer;
+    color: blue;
+    font-size: 24px;
+
+}
+.row:after{
+    content:"";
+    display: table;
+    clear: both;
+}
+.column{
+    float: left;
+}
+.start,.end{
+    margin-top: 10px;
+    width: 25%;
+}
+.start{
+    background: blueviolet;
+}
+.end{
+    background: orange;
+}
+.center{
+    width: 50%;
+}
+.catalog{
+    width: 100%;
+    text-align: center;
+}
+.name{
+    text-align: start;
+}
+.btnP{
+    margin-right: 20px;
+}

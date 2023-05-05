@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sneaker Hub API</title>
+      <link rel="stylesheet" href="mine.css">
+   </head>
+   <body>
+      <div class="heading">
+         <h1 class = "storeName" >Sneaker Hub API</h1>
+      </div>
+      <div class="row">
+         <div class="column start">
+            <h1>Categories</h1>
+            <div id="renderList">
+             </div>
+
+          </div>
+         <div class="column center" id="table_show">
+            
+         </div>
+         <div class="column end">
+            <h1>My Cart</h1>
+            <div id="cart_porduct">
+              
+
+            </div>
+             
+         </div>
+      </div>
+   </body>
+    <script type="text/javascript">
+      
+           // getCategoryList on load by ajax
+            window.onload = function() {
+                getCategory();
+                getAllProductList();
+                getAllCartProductList();
+              };
+
+             function getAllProductList(){
+               
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { 
+                 
+                 document.getElementById("table_show").innerHTML = this.responseText;
+
+                }
+              };
+              xhttp.open("POST", "getAllProductList", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send(`url=getAllProductList&method=GET`);
+
+             }
+
+             function getCategory(){
+               
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { 
+                 
+                 document.getElementById("renderList").innerHTML = this.responseText;
+
+                }
+              };
+              xhttp.open("POST", "getCategory", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send(`url=getCategoryList&method=GET`);
+
+             }
+         
+         document.body.addEventListener('click', function (evt) {
+          if (evt.target.className === 'cat') {
+               var categoryName =evt.target.innerText;
+
+               getCategoryFilter(categoryName);
+              
+          }else if(evt.target.className === 'view_product'){
+                      
+                 
+                 getProductById(evt.target.getAttribute("data-id"));
+          }else if(evt.target.className === 'add-to-card'){
+                addToCartProductById(evt.target.getAttribute("data-id"));
+           }else if(evt.target.className === 'remvoe-product'){
+                removeCartProduct(evt.target.getAttribute("data-id"));
+           }
+
+      }, false);
+
+         function removeCartProduct(p_id){
+                
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { 
+                     alert('cart Product remove');
+                     getAllCartProductList();
+                  }
+              };
+              xhttp.open("POST", "removeToCartProductById", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send(`url=removeToCartProductById&method=GET&p_id=${p_id}`);
+
+            }
+             
+
+     function addToCartProductById(p_id){
+                
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { 
+                    alert('added to cart');
+                      getAllProductList();
+                      getAllCartProductList();
+                  }
+              };
+              xhttp.open("POST", "addToCartProductById", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send(`url=addToCartProductById&method=GET&p_id=${p_id}`);
+
+            }
+        function getCategoryFilter(categoryName){
+              
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { 
+                 
+                 document.getElementById("table_show").innerHTML = this.responseText;
+
+                }
+              };
+              xhttp.open("POST", "getAllProductList", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send(`url=getAllProductList&method=GET&categoryName=${categoryName}`);
+
+            }
+
+            function getProductById(p_id){
+              
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { 
+                 
+                 document.getElementById("table_show").innerHTML = this.responseText;
+
+                }
+              };
+              xhttp.open("POST", "getProductDetails", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send(`url=getProductDetails&method=GET&p_id=${p_id}`);
+
+            }
+
+              function getAllCartProductList(){
+               
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) { 
+                 
+                 document.getElementById("cart_porduct").innerHTML = this.responseText;
+
+                }
+              };
+              xhttp.open("POST", "getAllCartProductList", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send(`url=getAllCartProductList&method=GET`);
+
+             }
+         
+        
+    </script>
+</html>

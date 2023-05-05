@@ -1,0 +1,14 @@
+RewriteEngine On    # Turn on the rewriting engine
+RewriteRule ^getCategory ajaxRequest.php [NC,L]
+RewriteRule ^getAllProductList ajaxRequest.php [NC,L]
+RewriteRule ^getAllCartProductList ajaxRequest.php [NC,L]
+RewriteRule ^getProductDetails ajaxRequest.php [NC,L]
+RewriteRule ^addToCartProductById ajaxRequest.php [NC,L]
+RewriteRule ^removeToCartProductById ajaxRequest.php [NC,L]
+
+RewriteRule ^product/categories callAPI.php [NC,L]
+RewriteRule ^product/list callAPI.php [NC,L]
+RewriteRule ^product/cart/list callAPI.php [NC,L]
+RewriteRule ^product/id callAPI.php [NC,L]
+RewriteRule ^product/cart callAPI.php [NC,L]
+RewriteRule ^product/cart/remove callAPI.php [NC,L]
