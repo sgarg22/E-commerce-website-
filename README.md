@@ -1,1 +1,2 @@
 # E-commerce-website
+This website uses PHP for server-side scripting. The server-side scripting is divided into two components. The first component is a REST-based API that communicates directly with the database and returns data only in JSON format. The second component is a PHP page that calls the REST-based API, retrieves the JSON data, and converts it into HTML. This PHP page acts as a mediator and will be referred to as the "PHP App". The HTML page will then receive the HTML data from the PHP App and display it to the user.
